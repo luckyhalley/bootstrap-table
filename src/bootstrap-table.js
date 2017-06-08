@@ -796,16 +796,18 @@
                     visibleColumns[column.field] = column;
                 }
 
-                html.push('<th' + sprintf(' title="%s"', column.titleTooltip),
-                    column.checkbox || column.radio ?
-                        sprintf(' class="bs-checkbox %s"', column['class'] || '') :
-                        class_,
-                    sprintf(' style="%s"', halign + style),
-                    sprintf(' rowspan="%s"', column.rowspan),
-                    sprintf(' colspan="%s"', column.colspan),
-                    sprintf(' data-field="%s"', column.field),
-                    '>');
-
+                if(column.visible){
+                  html.push('<th' + sprintf(' title="%s"', column.titleTooltip),
+                      column.checkbox || column.radio ?
+                          sprintf(' class="bs-checkbox %s"', column['class'] || '') :
+                          class_,
+                      sprintf(' style="%s"', halign + style),
+                      sprintf(' rowspan="%s"', column.rowspan),
+                      sprintf(' colspan="%s"', column.colspan),
+                      sprintf(' data-field="%s"', column.field),
+                      '>');
+                }
+                
                 html.push(sprintf('<div class="th-inner %s">', that.options.sortable && column.sortable ?
                     'sortable both' : ''));
 
